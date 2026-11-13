@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.alberto.calculadorasalarioneto.ui.theme.CalculadoraSalarioNetoTheme
+import android.content.Intent
 
 
 class MainActivity : ComponentActivity() {
@@ -36,6 +37,15 @@ class MainActivity : ComponentActivity() {
                     FormularioScreen(
                         modifier = Modifier.padding(innerPadding),
                         onCalcular = { datos ->
+                            val intent = Intent(this@MainActivity, ResultadoActivity::class.java)
+                            intent.putExtra("salarioBrutoAnual", datos.salarioBrutoAnual)
+                            intent.putExtra("numeroPagas", datos.numeroPagas)
+                            intent.putExtra("edad", datos.edad)
+                            intent.putExtra("grupoProfesional", datos.grupoProfesional)
+                            intent.putExtra("gradoDiscapacidad", datos.gradoDiscapacidad)
+                            intent.putExtra("estadoCivil", datos.estadoCivil)
+                            intent.putExtra("numeroHijos", datos.numeroHijos)
+                            startActivity(intent)
                          }
                         )
                     }
