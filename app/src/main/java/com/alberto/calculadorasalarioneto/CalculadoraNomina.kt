@@ -1,6 +1,6 @@
 package com.alberto.calculadorasalarioneto
 
-//datos que introduce el usuario en la primera vista
+//Datos que introduce el usuario en la primera vista
 
 class DatosNomina(
     val salarioBrutoAnual: Double,
@@ -13,7 +13,7 @@ class DatosNomina(
 )
 
 
-//resultaddos que mostraremos en las segunda vista
+//Resultaddos que mostraremos en las segunda vista
 class ResultadoNomina(
     val salarioBrutoAnual: Double,
     val salarioBrutoMensual: Double,
@@ -26,13 +26,12 @@ class ResultadoNomina(
 )
 
 
-
-//calculo simulado
+//Calculo simulado
 
 fun calcularNomina(datos: DatosNomina): ResultadoNomina {
     val bruto = datos.salarioBrutoAnual
 
-    //porcentaje base de IRPF segun salario
+    //Porcentaje base de IRPF segun salario
 
     val porcentajeBase = when {
         bruto < 15000 -> 2.0
@@ -42,6 +41,7 @@ fun calcularNomina(datos: DatosNomina): ResultadoNomina {
         else -> 30.0
 
     }
+
     var puntosDeduccion = datos.numeroHijos * 1.0
 
 
@@ -54,7 +54,7 @@ fun calcularNomina(datos: DatosNomina): ResultadoNomina {
     if (datos.estadoCivil == "Casado/a") puntosDeduccion += 1.0
     if (datos.edad >= 65) puntosDeduccion += 1.0
 
-    //porcentaje final de IRPF
+    //Porcentaje final de IRPF
 
     var porcentajeIrpf = porcentajeBase - puntosDeduccion
     if (porcentajeIrpf < 2.0) porcentajeIrpf = 2.0
@@ -63,7 +63,7 @@ fun calcularNomina(datos: DatosNomina): ResultadoNomina {
     //Importes en euros
 
     val retencionIrpf = bruto * porcentajeIrpf / 100
-    val deducciones = bruto / datos.numeroPagas
+    val deducciones = bruto * (porcentajeBase - porcentajeIrpf) / 100
     val seguridadSocial = bruto * 6.35 / 100
     val netoAnual = bruto - retencionIrpf - seguridadSocial
 
