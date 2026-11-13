@@ -1,57 +1,30 @@
 package com.alberto.calculadorasalarioneto.ui.theme
 
-import android.app.Activity
-import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Color
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
-)
-
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+// Esquema de colores verde y negro para toda la app
+private val EsquemaVerdeNegro = darkColorScheme(
+    primary = VerdePrincipal,          // botones rellenos, slider, campo activo
+    onPrimary = Color.Black,           // texto encima de los botones verdes
+    secondary = VerdeOscuro,
+    onSecondary = Color.Black,
+    background = Negro,                // fondo de la pantalla
+    onBackground = Color.White,        // texto normal
+    surface = Negro,
+    onSurface = Color.White,
+    surfaceVariant = GrisTarjeta,      // fondo de las tarjetas (vista 2)
+    onSurfaceVariant = Color(0xFFB0B0B0),
+    outline = VerdePrincipal,          // borde de OutlinedButton y del TextField
+    error = Color(0xFFFF5252)          // mensaje de error
 )
 
 @Composable
-fun CalculadoraSalarioNetoTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
-    content: @Composable () -> Unit
-) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
-
+fun CalculadoraSalarioNetoTheme(content: @Composable () -> Unit) {
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = EsquemaVerdeNegro,
         typography = Typography,
         content = content
     )
