@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.alberto.calculadorasalarioneto.ui.theme.CalculadoraSalarioNetoTheme
 import android.content.Intent
+import androidx.compose.runtime.saveable.rememberSaveable
 
 
 class MainActivity : ComponentActivity() {
@@ -58,14 +59,14 @@ class MainActivity : ComponentActivity() {
 fun FormularioScreen(modifier: Modifier = Modifier, onCalcular: (DatosNomina) -> Unit) {
     //Esttado de cada campo del formulario
 
-    var salarioTexto by remember { mutableStateOf("") }
-    var numeroPagas by remember { mutableStateOf("14") }
-    var edad by remember { mutableStateOf(30f) }
-    var grupoProfesional by remember { mutableStateOf("Tecnico") }
-    var discapacidad by remember { mutableStateOf("Ninguna") }
-    var estadoCivil by remember { mutableStateOf("Soltero/a") }
-    var numeroHijos by remember { mutableStateOf(0) }
-    var mensajeError by remember { mutableStateOf("") }
+    var salarioTexto by rememberSaveable { mutableStateOf("") }
+    var numeroPagas by rememberSaveable { mutableStateOf("14") }
+    var edad by rememberSaveable { mutableFloatStateOf(30f) }
+    var grupoProfesional by rememberSaveable { mutableStateOf("Técnico") }
+    var discapacidad by rememberSaveable { mutableStateOf("Ninguna") }
+    var estadoCivil by rememberSaveable { mutableStateOf("Soltero/a") }
+    var numeroHijos by rememberSaveable { mutableIntStateOf(0) }
+    var mensajeError by rememberSaveable { mutableStateOf("") }
 
     Column(
         modifier = modifier
